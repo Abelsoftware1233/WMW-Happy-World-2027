@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0a0a1a" />
+  <title>⭐ SUPER MARIO NEON</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREENS -->
+  <div id="screen-start" class="screen active">
+    <div class="stars-bg"></div>
+    <div class="start-content">
+      <div class="logo-wrap">
+        <div class="logo-sub">☆ NEON EDITION ☆</div>
+        <div class="logo-main">SUPER<br/>MARIO</div>
+        <div class="logo-sub">BROTHERS 3</div>
+      </div>
+      <canvas id="preview-canvas" width="320" height="120"></canvas>
+      <div class="menu-box">
+        <button class="btn-neon btn-start" id="btn-start">▶ START SPEL</button>
+        <button class="btn-neon btn-hiscore" id="btn-hiscore">🏆 HIGH SCORE</button>
+        <button class="btn-neon btn-help" id="btn-help">❓ HELP</button>
+      </div>
+      <div class="credits">MADE WITH ❤️ · NEON MARIO ENGINE</div>
+    </div>
+  </div>
+
+  <div id="screen-hiscore" class="screen">
+    <div class="stars-bg"></div>
+    <div class="panel-box">
+      <h2 class="panel-title">🏆 HIGH SCORES</h2>
+      <div id="hiscore-list"></div>
+      <button class="btn-neon" id="btn-back-hs">← TERUG</button>
+    </div>
+  </div>
+
+  <div id="screen-help" class="screen">
+    <div class="stars-bg"></div>
+    <div class="panel-box">
+      <h2 class="panel-title">❓ HELP</h2>
+      <div class="help-content">
+        <div class="help-row"><span class="hk">🕹️ Links/Rechts</span><span>Bewegen</span></div>
+        <div class="help-row"><span class="hk">🔼 Omhoog / A</span><span>Springen</span></div>
+        <div class="help-row"><span class="hk">⭐ Ster</span><span>Invincible</span></div>
+        <div class="help-row"><span class="hk">🍄 Paddenstoel</span><span>Groter worden</span></div>
+        <div class="help-row"><span class="hk">🌸 Vuurbloes</span><span>Vuur schieten</span></div>
+        <div class="help-row"><span class="hk">👾 Goomba</span><span>100 punten</span></div>
+        <div class="help-row"><span class="hk">🐢 Koopa</span><span>200 punten</span></div>
+        <div class="help-row"><span class="hk">🏁 Vlag</span><span>Level klaar!</span></div>
+      </div>
+      <button class="btn-neon" id="btn-back-help">← TERUG</button>
+    </div>
+  </div>
+
+  <div id="screen-game" class="screen">
+    <div id="hud">
+      <div class="hud-item">
+        <div class="hud-label">SCORE</div>
+        <div class="hud-val" id="hud-score">000000</div>
+      </div>
+      <div class="hud-item">
+        <div class="hud-label">LEVEL</div>
+        <div class="hud-val" id="hud-level">1-1</div>
+      </div>
+      <div class="hud-item">
+        <div class="hud-label">LEVENS</div>
+        <div class="hud-val" id="hud-lives">❤️❤️❤️</div>
+      </div>
+      <div class="hud-item">
+        <div class="hud-label">TIJD</div>
+        <div class="hud-val" id="hud-time">300</div>
+      </div>
+    </div>
+    <canvas id="game-canvas"></canvas>
+    <div id="mobile-controls">
+      <div class="ctrl-left">
+        <button class="ctrl-btn" id="btn-left">◀</button>
+        <button class="ctrl-btn" id="btn-right">▶</button>
+      </div>
+      <div class="ctrl-right">
+        <button class="ctrl-btn ctrl-jump" id="btn-jump">A<br/><small>JUMP</small></button>
+        <button class="ctrl-btn ctrl-fire" id="btn-fire">B<br/><small>FIRE</small></button>
+      </div>
+    </div>
+    <button class="btn-pause" id="btn-pause">⏸</button>
+  </div>
+
+  <div id="screen-pause" class="screen">
+    <div class="stars-bg"></div>
+    <div class="panel-box">
+      <h2 class="panel-title">⏸ PAUZE</h2>
+      <button class="btn-neon" id="btn-resume">▶ DOORGAAN</button>
+      <button class="btn-neon" id="btn-quit">🏠 MENU</button>
+    </div>
+  </div>
+
+  <div id="screen-gameover" class="screen">
+    <div class="stars-bg"></div>
+    <div class="panel-box">
+      <h2 class="panel-title go-title">GAME OVER</h2>
+      <div class="go-score">Score: <span id="go-score-val">0</span></div>
+      <input class="neon-input" id="go-name" maxlength="10" placeholder="Jouw naam..." />
+      <button class="btn-neon" id="btn-save-score">💾 OPSLAAN</button>
+      <button class="btn-neon" id="btn-retry">🔄 OPNIEUW</button>
+      <button class="btn-neon" id="btn-menu">🏠 MENU</button>
+    </div>
+  </div>
+
+  <div id="screen-win" class="screen">
+    <div class="stars-bg"></div>
+    <div class="panel-box">
+      <h2 class="panel-title win-title">🎉 GEWONNEN!</h2>
+      <div class="win-text">Je hebt alle levels verslagen!</div>
+      <div class="go-score">Score: <span id="win-score-val">0</span></div>
+      <button class="btn-neon" id="btn-win-menu">🏠 MENU</button>
+    </div>
+  </div>
+
+  <div id="popup-points" class="popup-points"></div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
